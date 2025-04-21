@@ -87,34 +87,45 @@ function initMenuToggle() {
 
 // Smooth navigation between sections
 function initSmoothNav() {
-  const navLinks = document.querySelectorAll(".nav-link");
+  // Select all anchor links pointing to an ID within the page
+  const internalLinks = document.querySelectorAll('a[href^="#"]');
   const sections = document.querySelectorAll(".section");
+  const navLinks = document.querySelectorAll(".nav-link"); // Keep this to manage active state in nav
 
-  navLinks.forEach((link) => {
+  internalLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      // Get the target section ID
       const targetId = this.getAttribute("href").substring(1);
+      const targetSection = document.getElementById(targetId);
 
-      // Remove active class from all links
-      navLinks.forEach((link) => {
-        link.classList.remove("active");
-      });
+      // Only proceed if the target section exists
+      if (targetSection) {
+        e.preventDefault();
 
-      // Add active class to clicked link
-      this.classList.add("active");
+        // --- Update active state for main navigation links ---
+        navLinks.forEach((navLink) => {
+          navLink.classList.remove("active");
+        });
+        // Find the corresponding nav link and add active class
+        const correspondingNavLink = document.querySelector(
+          `.nav-link[href="#${targetId}"]`
+        );
+        if (correspondingNavLink) {
+          correspondingNavLink.classList.add("active");
+        }
+        // --- End of main navigation active state update ---
 
-      // Remove active class from all sections
-      sections.forEach((section) => {
-        section.classList.remove("active");
-      });
+        // Remove active class from all sections
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
 
-      // Add active class to target section
-      document.getElementById(targetId).classList.add("active");
+        // Add active class to target section
+        targetSection.classList.add("active");
 
-      // Update URL hash without jumping
-      history.pushState(null, null, `#${targetId}`);
+        // Update URL hash without jumping
+        history.pushState(null, null, `#${targetId}`);
+      }
+      // If targetSection doesn't exist, allow default browser behavior (e.g., for back-to-top)
     });
   });
 
@@ -130,13 +141,18 @@ function initSmoothNav() {
       targetId = "home";
     }
 
-    // Remove active class from all links
+    // Remove active class from all nav links
     navLinks.forEach((link) => {
       link.classList.remove("active");
     });
 
-    // Add active class to target link
-    document.querySelector(`a[href="#${targetId}"]`).classList.add("active");
+    // Add active class to target nav link if it exists
+    const targetNavLink = document.querySelector(
+      `.nav-link[href="#${targetId}"]`
+    );
+    if (targetNavLink) {
+      targetNavLink.classList.add("active");
+    }
 
     // Remove active class from all sections
     sections.forEach((section) => {
@@ -150,6 +166,9 @@ function initSmoothNav() {
     } else {
       // Fallback to home
       document.getElementById("home").classList.add("active");
+      // Ensure home nav link is active if falling back
+      const homeNavLink = document.querySelector('.nav-link[href="#home"]');
+      if (homeNavLink) homeNavLink.classList.add("active");
     }
   }
 
