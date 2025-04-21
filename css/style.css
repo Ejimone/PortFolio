@@ -1,16 +1,20 @@
 /* ======== GLOBAL STYLES ======== */
 :root {
   /* Color scheme */
-  --primary-color: #fe7743;
-  --secondary-color: #273f4f;
-  --gradient-primary: linear-gradient(45deg, #fe7743, #273f4f);
-  --gradient-secondary: linear-gradient(135deg, #fe7743, #273f4f);
-  --dark-bg: #000000;
-  --darker-bg: #000000;
-  --light-bg: #273f4f;
-  --text-color: #efeeea;
-  --text-color-muted: #efeeea;
-  --border-color: rgba(239, 238, 234, 0.1);
+  --primary-color: #fe7743; /* New Orange */
+  --secondary-color: #ff9a75; /* Lighter shade of orange for hover/accents */
+  --gradient-primary: linear-gradient(45deg, #fe7743, #ff9a75);
+  --gradient-secondary: linear-gradient(
+    135deg,
+    #273f4f,
+    #3a5a70
+  ); /* Gradient based on dark blue-gray */
+  --dark-bg: #273f4f; /* New Dark Blue-Gray */
+  --darker-bg: #000000; /* New Black */
+  --light-bg: #3a5a70; /* Lighter shade of dark blue-gray */
+  --text-color: #efeeea; /* New Light Gray/Off-white */
+  --text-color-muted: #a8a8a8; /* Muted version of light gray */
+  --border-color: rgba(239, 238, 234, 0.1); /* Border based on light gray */
 
   /* Typography */
   --font-primary: "Space Grotesk", sans-serif;
@@ -26,9 +30,9 @@
   --container-padding: 0 15px;
 
   /* Shadows */
-  --shadow-sm: 0 5px 10px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 5px 10px rgba(0, 0, 0, 0.2); /* Adjusted shadow for darker theme */
+  --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.3);
 
   /* Border radius */
   --border-radius-sm: 4px;
@@ -177,14 +181,16 @@ a:hover {
 
 .primary-btn {
   background: var(--gradient-primary);
-  color: white;
-  box-shadow: 0 6px 15px rgba(110, 87, 224, 0.25);
+  color: var(
+    --darker-bg
+  ); /* Changed text color for better contrast on orange */
+  box-shadow: 0 6px 15px rgba(254, 119, 67, 0.25); /* Shadow based on primary color */
 }
 
 .primary-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(110, 87, 224, 0.4);
-  color: white;
+  box-shadow: 0 10px 20px rgba(254, 119, 67, 0.4); /* Shadow based on primary color */
+  color: var(--darker-bg);
 }
 
 .secondary-btn {
@@ -479,7 +485,7 @@ header.scrolled {
 
 .social-links a:hover {
   background: var(--gradient-primary);
-  color: white;
+  color: var(--darker-bg); /* Changed text color */
   transform: translateY(-5px);
 }
 
@@ -532,13 +538,13 @@ header.scrolled {
 
 .glitch-text::before {
   left: 2px;
-  text-shadow: -1px 0 red;
+  text-shadow: -1px 0 #ff003c; /* Adjusted glitch color */
   animation: glitch-animation 3s infinite linear alternate-reverse;
 }
 
 .glitch-text::after {
   left: -2px;
-  text-shadow: 2px 0 blue;
+  text-shadow: 2px 0 #00ffcc; /* Adjusted glitch color */
   animation: glitch-animation 2s infinite linear alternate-reverse;
 }
 
@@ -973,7 +979,7 @@ header.scrolled {
 .filter-btn:hover,
 .filter-btn.active {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--darker-bg); /* Changed text color */
   border-color: var(--primary-color);
 }
 
@@ -1076,6 +1082,7 @@ header.scrolled {
 
 .project-link:hover {
   background-color: var(--primary-color);
+  color: var(--darker-bg); /* Changed text color */
   transform: translateY(-5px);
 }
 
@@ -1094,9 +1101,8 @@ header.scrolled {
   font-size: 0.75rem;
   padding: 3px 10px;
   border-radius: 20px;
-  background-color: rgba(110, 87, 224, 0.15);
+  background-color: rgba(254, 119, 67, 0.15); /* Adjusted tag background */
   color: var(--primary-color);
-  font-weight: 500;
 }
 
 .project-title {
@@ -1158,7 +1164,7 @@ header.scrolled {
   justify-content: center;
   align-items: center;
   font-size: 1.3rem;
-  color: white;
+  color: var(--darker-bg); /* Changed icon color */
   margin-right: 20px;
   flex-shrink: 0;
 }
@@ -1189,7 +1195,7 @@ header.scrolled {
   gap: 15px;
 }
 
-.social-icons a {
+social-icons a {
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -1205,7 +1211,7 @@ header.scrolled {
 
 .social-icons a:hover {
   background: var(--gradient-primary);
-  color: white;
+  color: var(--darker-bg); /* Changed icon color */
   transform: translateY(-5px);
   border-color: transparent;
 }
@@ -1249,7 +1255,7 @@ header.scrolled {
 .contact-form textarea:focus {
   border-color: var(--primary-color);
   outline: none;
-  box-shadow: 0 0 10px rgba(110, 87, 224, 0.1);
+  box-shadow: 0 0 10px rgba(254, 119, 67, 0.1); /* Adjusted focus shadow */
 }
 
 .contact-form ::placeholder {
@@ -1333,7 +1339,7 @@ footer {
 }
 
 .back-to-top:hover a {
-  color: white;
+  color: var(--darker-bg); /* Changed icon color */
 }
 
 /* ======== MEDIA QUERIES ======== */
